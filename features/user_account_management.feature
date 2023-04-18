@@ -27,7 +27,7 @@ Feature: Managing user accounts from administration perspective
         Then A confirmation button should popup
         And The account should be deleted after confirmation
 
-    Scenario Admin cannot create a user with an email that is already taken
+    Scenario: Admin cannot create a user with an email that is already taken
         Given I am on the customers page
         And There already is user under email 'test@test' in the system
         When I click the 'Add' button
