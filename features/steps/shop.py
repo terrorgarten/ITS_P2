@@ -1,14 +1,7 @@
 from utils import *
 from behave import *
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
 
 use_step_matcher("re")
-
 
 @given("I type in my credentials")
 def step_impl(context):
@@ -176,5 +169,3 @@ def step_impl(context):
     :type context: behave.runner.Context
     """
     assert context.driver.find_element(By.LINK_TEXT, "iMac").text == "iMac"
-
-
