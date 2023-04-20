@@ -15,7 +15,7 @@ Feature: User account registration and order history operations
 		When I press the register button 
 		Then my account should be created in the system
 
-	# Could be moved but it relates to users a bit
+	# FIXME Could be moved to separate feature, but it relates to users the most, so it will stay here for now.
 	Scenario: System withstand a very weak try for sql injection
 		When I enter the injection query
 		Then I should get an error page or nothing should happen
@@ -29,3 +29,9 @@ Feature: User account registration and order history operations
 		When I press the register button
 		Then I should get an error with saying that the email is already registered
 
+# FIXME: Waiting for payment method implementation
+#	Scenario: User can view his order history
+#		Given I am logged in
+#		And I have exactly one order
+#		And I am at the order history page
+#		Then I can see my only order

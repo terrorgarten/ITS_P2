@@ -11,6 +11,13 @@ Feature: Product ordering and manipulation for logged in users
 		When I add iPhone to the cart
 		Then I can see that the 'iPhone' was added to the shopping cart
 
+		#TODO FINISH THIS
+#	Scenario: Increase amount of items in the shopping cart
+#		Given I can see iPhone in my cart
+#		When I set the amount of iPhones in the shopping cart to three
+#		And I click the update button
+#		Then I can see that the amount of iPhones is set to three
+
 	Scenario: Customer removes iPhone from the cart
 		Given I can see iPhone in my cart
 		When I click Remove iPhone from the cart
@@ -40,7 +47,7 @@ Feature: Product ordering and manipulation for logged in users
 #		And I should see a popup saying 'Success: Your order has been placed'
 #		And I should be able to quit the popup
 
-# -------------- EXCLUDED: ----------------------------------------------------------------
+# -------------- EXCLUDED: doesn't directly regard shop feature  ----------------------------------------------------------------
 #	Scenario: Customer adds 'iPhone' to the wishlist
 #		Given I am at the homepage
 #		And I can see product 'iPhone' in the featured section
@@ -56,26 +63,4 @@ Feature: Product ordering and manipulation for logged in users
 #		And the webmaster confirms this review
 #		Then I should see the review on the 'iMac' site
 #
-#	Scenario: Customer searches for a product 'iMac' in all categories
-#		Given I am at the homepage
-#		And 'iMac' product is present in the system
-#		And I search for 'iMac' in the top search bar
-#		When I click the search button
-#		Then I should see 'iMac' product in the search results
-#
-#	Scenario: Customer sorts products by price
-#		Given I am at the 'Phones & PDAs' page
-#		And I can see at least 2 phone products with different price
-#		When I select 'Price (Low > High)' from the 'Sort by' picker
-#		Then I should see the cheapest product first
-#		And I should see the most expensive product at the bottom
-#
-#	Scenario: Customer can edit the quantity of products in their cart
-#		Given I am at the shoping cart page
-#		And I have one 'iMac' product in my cart
-#		When I enter '2' in the quantity column
-#		And I click refresh
-#		Then I will see that I have 2 products in my cart
-#		And I should see that the price doubled
-
 
