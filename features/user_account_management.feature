@@ -1,4 +1,5 @@
 Feature: Managing user accounts from administration perspective
+
     Scenario: I can log in as admin user
         Given I am at the admin registration page
         And I enter admin login data to the form

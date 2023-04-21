@@ -1,10 +1,15 @@
 # import generalization for all features
+from behave import *
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
+from selenium.webdriver.common.action_chains import ActionChains
+
 import random
 import string
 
@@ -65,3 +70,7 @@ def open_my_account_menu(driver: webdriver) -> None:
     """
     toggler = driver.find_element(By.XPATH, '//*[@id="top"]/div/div[2]/ul/li[2]/div/ul')
     driver.execute_script("arguments[0].setAttribute('class','dropdown-menu dropdown-menu-right show')", toggler)
+
+def turn_off_order_modal(driver: webdriver) -> None:
+    modal = driver.find_element(By.ID, "modal-cart")
+    driver.execute_script("arguments[0].setAttribute('class', 'modal')", modal)

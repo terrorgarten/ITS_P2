@@ -17,7 +17,7 @@ def get_driver():
     # determines response wait time - set longer if you want to overview the
     # state on which the test got stuck via localhost:7900 (selenium grid)
     # recommended - 1 for casual testing run | 15 for human reviewing [in seconds]
-    driver.implicitly_wait(30)
+    driver.implicitly_wait(15)
     return driver
 
 def before_all(context):
