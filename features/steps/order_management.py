@@ -100,7 +100,6 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    WebDriverWait(context.driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#content > div.page-header > div > div > a.btn.btn-light")))
     context.driver.find_element(By.CSS_SELECTOR, "#content > div.page-header > div > div > a.btn.btn-light").click()
 
 
@@ -111,7 +110,6 @@ def step_impl(context):
     """
     global deleted_order_id
     deleted_order_id = context.driver.find_element(By.XPATH, '//*[@id="form-order"]/div[1]/table/tbody/tr[1]/td[2]').text
-    print(deleted_order_id)
 @step("I select a order")
 def step_impl(context):
     """

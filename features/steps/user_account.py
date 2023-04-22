@@ -10,9 +10,9 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     open_my_account_menu(context.driver)
-    context.driver.find_element(By.LINK_TEXT, "Register").click()
+    context.driver.find_element(By.LINK_TEXT, 'Register').click()
 
 @step("I filled in name")
 def step_impl(context):
@@ -76,7 +76,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     open_my_account_menu(context.driver)
     assert context.driver.find_element(By.LINK_TEXT, "My Account")
 
@@ -86,7 +86,10 @@ def step_impl(context):
     :type context: behave.runner.Context
     """
     open_my_account_menu(context.driver)
-    context.driver.find_element(By.LINK_TEXT, "Logout").click()
+    try:
+        context.driver.find_element(By.LINK_TEXT, "Logout").click()
+    except NoSuchElementException:
+        print(__file__ + ": CANT LOG OUT BECAUSE THERES NO VALID LOGIN SESSION.")
 
 
 @then("I will be logged out")
@@ -134,14 +137,15 @@ def step_impl(context):
     global new_email
     if new_email == "":
         new_email = get_random_string(10)
-    context.driver.find_element(By.ID, "input-email").send_keys(new_email + "@test.cz")
+    context.driver.find_element(By.ID, "input-email").send_keys(CUSTOMER_LOGIN)
 
 @then("I should get an error with saying that the email is already registered")
 def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    print(context.driver.find_element(By.CSS_SELECTOR, "#alert > div > i").text)# == " Warning: E-Mail Address is already registered! "
+    sleep(40)
+    assert context.driver.find_element(By.CSS_SELECTOR, "#alert > div").text == "Warning: E-Mail Address is already registered!"
 
 
 @given("I am logged out")
@@ -150,4 +154,7 @@ def step_impl(context):
     :type context: behave.runner.Context
     """
     open_my_account_menu(context.driver)
-    context.driver.find_element(By.LINK_TEXT, "Logout").click()
+    try:
+        context.driver.find_element(By.LINK_TEXT, "Logout").click()
+    except NoSuchElementException:
+        print(__file__ + ": CANT LOG OUT BECAUSE THERES NO VALID LOGIN SESSION.")

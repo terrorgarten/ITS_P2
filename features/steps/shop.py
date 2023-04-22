@@ -8,14 +8,13 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     context.driver.find_element(By.CSS_SELECTOR, ".list-inline-item > .dropdown .fa-caret-down").click()
     context.driver.find_element(By.LINK_TEXT, "Login").click()
-    context.driver.find_element(By.LINK_TEXT, "Login").click()
     context.driver.find_element(By.ID, "input-email").click()
-    context.driver.find_element(By.ID, "input-email").send_keys("matejkonopik@gmail.com")
+    context.driver.find_element(By.ID, "input-email").send_keys(CUSTOMER_LOGIN)
     context.driver.find_element(By.ID, "input-password").click()
-    context.driver.find_element(By.ID, "input-password").send_keys("1234")
+    context.driver.find_element(By.ID, "input-password").send_keys(CUSTOMER_PASSWORD)
 
 @when('I click enter')
 def step_impl(context):
@@ -26,14 +25,14 @@ def step_impl(context):
     context.driver.find_element(By.CSS_SELECTOR, ".list-group-item:nth-child(1)").click()
     context.driver.find_element(By.LINK_TEXT, "Edit your account information").click()
     value = context.driver.find_element(By.ID, "input-email").get_attribute("value")
-    assert value == "matejkonopik@gmail.com"
+    assert value == CUSTOMER_LOGIN
 
 @given("I am at the homepage")
 def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     context.driver.find_element(By.CSS_SELECTOR, HOME_BTN).click()
 
 
@@ -42,7 +41,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     context.driver.find_element(By.CSS_SELECTOR, ".col:nth-child(2) h4").click()
     assert context.driver.find_element(By.LINK_TEXT, "iPhone").text == "iPhone"
 
@@ -52,7 +51,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     context.driver.find_element(By.LINK_TEXT, "iPhone").click()
     context.driver.find_element(By.ID, "button-cart").click()
 
@@ -62,7 +61,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     context.driver.find_element(By.CSS_SELECTOR, ".btn-inverse").click()
     context.driver.find_element(By.CSS_SELECTOR, ".text-end > a:nth-child(1) > strong").click()
     assert context.driver.find_element(By.LINK_TEXT, "iPhone") 
@@ -80,7 +79,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/en-gb?route=checkout/cart")
+    context.driver.get(SUT_URL + "/en-gb?route=checkout/cart")
     assert context.driver.find_element(By.LINK_TEXT, "iPhone").text == "iPhone" # redundant?
 
 
@@ -110,8 +109,9 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     #context.driver.find_element(By.LINK_TEXT, "Cameras").click() # go to home page
+    context.driver.find_element(By.CSS_SELECTOR, "#narbar-menu > ul > li:nth-child(7) > a").click() # go to canon detail page
     context.driver.find_element(By.LINK_TEXT, "Canon EOS 5D").click() # go to canon detail page
 
 @step("I select 'Red' from the available options")
@@ -136,7 +136,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     context.driver.find_element(By.CSS_SELECTOR, ".btn-inverse").click()
     context.driver.find_element(By.CSS_SELECTOR, ".text-end > a:nth-child(1) > strong").click()
     assert context.driver.find_element(By.LINK_TEXT, "Canon EOS 5D")
@@ -152,7 +152,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/")
+    context.driver.get(SUT_URL)
     context.driver.find_element(By.NAME, "search").click()
     context.driver.find_element(By.NAME, "search").send_keys("iMac")
 

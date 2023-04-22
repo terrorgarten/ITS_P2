@@ -10,7 +10,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    context.driver.get("http://mys01.fit.vutbr.cz:8084/administration/")
+    context.driver.get(SUT_URL + "/administration/")
 
 
 @step("I enter admin login data to the form")
@@ -127,6 +127,7 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
+    sleep(10)
     context.driver.find_element(By.CSS_SELECTOR, "#content > div.page-header > div > div > a").click()
 
 

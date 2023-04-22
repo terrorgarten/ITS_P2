@@ -21,7 +21,9 @@ Feature: User account registration and order history operations
 		Then I should get an error page or nothing should happen
 	
 	Scenario: User can't make an account on email that is already in use
-		Given I am logged out
+		Given I am at the homepage
+		And I am logged out
+		And I am logged out
 		And I am at the register account page
 		And I filled the form with valid data
 		And I fill in existing account email

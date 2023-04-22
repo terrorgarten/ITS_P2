@@ -11,13 +11,6 @@ Feature: Product ordering and manipulation for logged in users
 		When I add iPhone to the cart
 		Then I can see that the 'iPhone' was added to the shopping cart
 
-		#TODO FINISH THIS
-#	Scenario: Increase amount of items in the shopping cart
-#		Given I can see iPhone in my cart
-#		When I set the amount of iPhones in the shopping cart to three
-#		And I click the update button
-#		Then I can see that the amount of iPhones is set to three
-
 	Scenario: Customer removes iPhone from the cart
 		Given I can see iPhone in my cart
 		When I click Remove iPhone from the cart

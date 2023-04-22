@@ -21,6 +21,12 @@ HOME_BTN = '#logo .img-fluid'
 ADMIN_USERNAME = "user"
 ADMIN_PASSWORD = "bitnami"
 
+CUSTOMER_LOGIN = "test@user.com"
+CUSTOMER_PASSWORD = "1234"
+
+
+SUT_URL = "http://mys01.fit.vutbr.cz:8086/"
+
 # procedures for checking elements/links
 def check_exists_by_xpath(xpath: str, driver: webdriver) -> bool:
     """
@@ -74,3 +80,22 @@ def open_my_account_menu(driver: webdriver) -> None:
 def turn_off_order_modal(driver: webdriver) -> None:
     modal = driver.find_element(By.ID, "modal-cart")
     driver.execute_script("arguments[0].setAttribute('class', 'modal')", modal)
+
+def create_sample_user_account(context):
+    try:
+        context.driver.get(SUT_URL + "/administration/")
+        context.driver.find_element(By.ID, "input-username").send_keys(ADMIN_USERNAME)
+        context.driver.find_element(By.ID, "input-password").send_keys(ADMIN_PASSWORD)
+        context.driver.find_element(By.CSS_SELECTOR, ".btn").click()
+        context.driver.find_element(By.LINK_TEXT, "Customers").click()
+        context.driver.find_element(By.CSS_SELECTOR, "#collapse-5 > li:nth-child(1) > a").click()
+        context.driver.find_element(By.CSS_SELECTOR, "#content > div.page-header > div > div > a").click()
+        context.driver.find_element(By.ID, "input-firstname").click()
+        context.driver.find_element(By.ID, "input-firstname").send_keys("user")
+        context.driver.find_element(By.ID, "input-lastname").send_keys("user")
+        context.driver.find_element(By.ID, "input-email").send_keys(CUSTOMER_LOGIN)
+        context.driver.find_element(By.ID, "input-password").send_keys(CUSTOMER_PASSWORD)
+        context.driver.find_element(By.ID, "input-confirm").send_keys(CUSTOMER_PASSWORD)
+        context.driver.find_element(By.CSS_SELECTOR, ".float-end > .btn-primary").click()
+    except BaseException:
+        print("INFO : COULD NOT CREATE CUSTOMER USER ACCOUNT FOR TESTING - PERHAPS IT ALREADY EXISTS.")

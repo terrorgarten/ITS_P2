@@ -39,18 +39,16 @@ Following tests/scenarios were added in comparison with the plan (ITS project 1)
 
 ### 5.1 Main known issues
 - The system is missing shipping and payment method which user could use to finish the order of his items and neither can the user add them in his account information. This makes the system NOT PRODUCTION READY!
-    - Depiction: ![Alt text](./img/checkout.png)
     - *Resolution*: Add a payment gate through the OpenCart admin panel - navigate to Extensions, select desired gate and 
       integrate it. (PayPal is a valid contender, because the integration is free)
     - Please refer to Scenario  ```Customer places an order for product in their shopping card.``` at ```ITS_P2/features/shop.feature:31```
 - Searching for products to be added to an order by admin is unstable. Valid item 'iMac' in the tested system is found only about a half of the time, without known cause.
-    - Depiction: ![Alt text](./img/order_dropdown.png)
     - *Resolution* Search engine check & fix, perhaps a RE runs there which doesn't always map correctly?
     - Please refer to Scenario ```Admin can create an order``` which might be failing due to this.
 - Order adding does not crosscheck the zipcode with the selected country and region. Invalid address can be entered.
+
 ### 5.2 Possible improvements & tweaks 
 - The notification popups cannot be manipulated by the user. In admin pannel, it partially blocks the return button from the page ```http://mys01.fit.vutbr.cz:8084/administration/index.php?route=customer/customer|form```.
-    - Depiction: ![Alt text](./img/popup.png)
     - *Resolution*: Direct UI reimplementation or system update to OpenCart 5.0 *(Warning - this would require reimplementation of unknown amount of tests)*.
     - Refer to ``` Admin can create new user ``` which is failing due to this
 - My Account dropdown cannot bo opened by selenium and has to be accessed over class change - might not be an issue but seems weird
